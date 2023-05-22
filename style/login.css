@@ -1,0 +1,180 @@
+.Login{
+    display: flex;
+    height: 100vh;
+
+}
+
+.left-container{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media (max-width: 700px){
+    .left-container{
+        display: none;
+    }
+    .Login{
+        justify-content: center;
+    }
+}
+.left-container .box{
+    width: 650px;
+    height: 309px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.box .title{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 54px;
+    font-family: 'Poppins', sans-serif;
+}
+.box .title2{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 38px;
+    text-align: center;
+    font-family: 'Fira Sans', sans-serif;
+}
+@media (max-width: 965px) {
+    .box .title{
+        font-size: 22px;
+    }   
+    .box .title2{
+        font-size: 18px;
+    }
+}
+.box p{
+    padding: 0px;
+    margin: 0px;
+}
+
+
+.right-container{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.right-container .box{
+    height: 550px;
+    width: 400px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+}
+.email-box{
+    height: 91px;
+}
+.placeholder{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+}
+.inputs{
+    width: 350px;
+    height: 51px;
+    border: 1px solid #9D9D9D;
+    border-radius: 9px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+}
+.password-box{
+    height: 125px;
+}
+.checkbox{
+    width: 14px;
+    border: 2px solid #9D9D9D;
+
+}
+.remember-me{
+    display: flex;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    padding-top: 5px;
+}
+
+
+
+.sign-in-box{
+    height: 212px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 24px;
+    gap: 14px;
+}
+.sign-in-box .button{
+    width: 360px;
+    height: 50px;
+    background: #393262;
+    border-radius: 40px;
+    color: #FFFFFF;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 24px;
+}
+.sign-in-box .icons{
+    width: 193px;
+    display: flex;
+    justify-content: space-between;
+}
+.forgot-password p{
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.sign-up-box{
+    height: 83px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 24px;
+}
+.sign-up-box .button{
+    width: 360px;
+    height: 30px;
+    background: #252121;
+    border-radius: 40px;
+    color:#FFFFFF;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+}
+button{
+    border: none;
+}
+.title {
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 800;
+    font-size: 39px;
+}
