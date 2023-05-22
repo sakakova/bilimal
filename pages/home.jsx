@@ -1,14 +1,17 @@
-import '../style/home.css'
-export const Home =() => {
-    return <div className="Home">
-        <div className="logo-box">
-            <div className="">
-                <img src="icons\onoyku 1logo.svg" alt="logo" />
-            </div>
-            <p>Оңой окуу</p>
+// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+
+import { NavBar } from '../components/navbar';
+export const Home = () => {
+    return( 
+        <div className="Home">
+            <h3>Home Page</h3>
+            <div style={{height:'130vh', background: 'yellow'}}>Adil</div>
+
+            <NavBar/>
         </div>
-        <div className="button-box">
-            <button>Старт</button>
-        </div>
-    </div>
+
+    
+    
+    )
 }
