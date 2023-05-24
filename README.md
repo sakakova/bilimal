@@ -15,7 +15,7 @@ Make sure you have Node.js installed on your machine. You can download it from t
 git clone https://github.com/sakakova/bilimal.git
 cd your-repo
 
-npm install
+npm install vite
 
 
 npm run dev
