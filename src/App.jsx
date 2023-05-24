@@ -1,28 +1,49 @@
 
 import './App.css'
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Routes, } from 'react-router-dom'
 import {  Start } from '../pages/start'
 import { Registration } from '../pages/registration'
 import { Login } from '../pages/login'
 import { Home } from '../pages/home'
-
+import { useEffect, useState } from 'react';
+import { auth } from './config'
+import { NavBar } from '../components/navbar'
+import { Courses } from '../pages/courses'
+import { Profile } from '../pages/profile'
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setIsAuthenticated(!!user);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   return (
     <Router>
     {/* <Header/> */}
     <div className="App">
         <Routes>
+          {/* <Route path='/' element={<Start/>} /> */}
           
-          <Route path='/' element={<Start/>} />
+          {/* <Route  path='/home' element={<Home/> }/> */}
+         {!isAuthenticated ? (
+            <Route path='/' element={<Start/>} />
+          ) : (
+            <Route path='/' element={<Home />} />
+          )}
+
           <Route path='/sign-up' element={<Registration/>}/>
           <Route path='/sign-in' element={<Login/>}/>
-          <Route path='/home' element={<Home/>}/>
-
+          <Route path='/courses' element={<Courses/>}/>
+          <Route path='/profile' element={<Profile/>}/>
 
         </Routes>
     </div>
+    {isAuthenticated && <NavBar />}
     {/* <Footer/> */}
     
   </Router>

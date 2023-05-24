@@ -31,6 +31,9 @@ export const Registration =() =>{
                 // ..
             });
         }
+        const toSignIn = ()=>{
+            navigate('/sign-in')
+        }
 
 
     return <div className="Login">
@@ -60,7 +63,7 @@ export const Registration =() =>{
                     </div>
                     <div className="sign-up-box">
                         <p>Уже есть аккаунт?</p>
-                        <button className='button'>Войти</button>
+                        <button className='button' onClick={toSignIn}>Войти</button>
                     </div>
                 </form>
             </div>
