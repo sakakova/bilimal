@@ -15,7 +15,8 @@ const firebaseConfig = {
   storageBucket: "onoyku-61a1f.appspot.com",
   messagingSenderId: "137835802741",
   appId: "1:137835802741:web:cca307458e35db2134883c",
-  measurementId: "G-4BQXQF350R"
+  measurementId: "G-4BQXQF350R",
+  databaseURL: "onoyku-61a1f.firebaseapp.com"
 };
 
 // Initialize Firebase

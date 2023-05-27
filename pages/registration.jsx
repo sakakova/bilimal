@@ -12,11 +12,15 @@ export const Registration =() =>{
      
         const [email, setEmail] = useState('')
         const [password, setPassword] = useState('');
+        const [name, setName] = useState('')
+        
+
+
      
         const onSubmit = async (e) => {
           e.preventDefault()
          
-          await createUserWithEmailAndPassword(auth, email, password)
+          await createUserWithEmailAndPassword(auth, email, password, { displayName: name })
             .then((userCredential) => {
                 // Signed in
                 const user = userCredential.user;
@@ -42,6 +46,11 @@ export const Registration =() =>{
             <div className="box">
                 <p className='title'>Регистрация</p>
                 <form action="">
+                <div className="name-box">
+                        <p className='placeholder'>Name</p>
+                        <input type="text" className='inputs' placeholder='Введите имя' value={name} onChange={(e)=>setName(e.target.value)} required/>
+                    </div>
+
                     <div className="email-box">
                         <p className='placeholder'>E-mail</p>
                         <input type="email" className='inputs' placeholder='Введите e-mail' value={email} onChange={(e)=>setEmail(e.target.value)} required/>

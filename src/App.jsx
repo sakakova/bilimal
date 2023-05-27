@@ -10,6 +10,9 @@ import { auth } from './config'
 import { NavBar } from '../components/navbar'
 import { Courses } from '../pages/courses'
 import { Profile } from '../pages/profile'
+import { CreateLesson } from '../components/createLesson'
+import { LessonDetails } from '../components/lessonDetails'
+import { NotFound } from '../pages/noFound'
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -40,6 +43,11 @@ function App() {
           <Route path='/sign-in' element={<Login/>}/>
           <Route path='/courses' element={<Courses/>}/>
           <Route path='/profile' element={<Profile/>}/>
+          <Route path='/create' element={<CreateLesson/>}/>
+          <Route path='/lessons/:id' element={<LessonDetails/>}/>
+          <Route path='*' element={<NotFound/>}/>
+
+
 
         </Routes>
     </div>
