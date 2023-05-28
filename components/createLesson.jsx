@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getFirestore, collection, addDoc, doc, getDoc, updateDoc, increment} from 'firebase/firestore';
 import { app } from '../src/config';
-import { getStorage, ref, uploadBytes } from 'firebase/storage';
+import {  ref, uploadBytes } from 'firebase/storage';
 import { storage } from '../src/config';
 import '../style/createLesson.css'
 export const CreateLesson = () => {
@@ -14,6 +14,8 @@ export const CreateLesson = () => {
     const [isPending, setIsPending] = useState(false);
     const [lessonId, setLessonId] = useState(0);
     const [image, setImage] = useState(null);
+    const [quizLink, setQuizLink] = useState('');
+
 
 
     const navigate = useNavigate();
@@ -34,7 +36,8 @@ export const CreateLesson = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const lesson = {id: lessonId,title, body, author, image: image ? image.name : null,
+        const lesson = {id: lessonId,title, body, author, image: image ? image.name : null,quizLink: quizLink ? quizLink : null,
+
             
         };
     
@@ -99,6 +102,14 @@ export const CreateLesson = () => {
                     <option value="Satyam">Satyam</option>
                     <option value="Anmol">Anmol</option>
                 </select>
+                <label>Quiz link:</label>
+                <input
+                    className="inp"
+                    type="text"
+                    required
+                    value={quizLink}
+                    onChange={(e) => setQuizLink(e.target.value)}
+                />
                 {!isPending && <button>Create lesson</button>}
                 {isPending && <button disabled>Adding Blog</button>}
             </form>

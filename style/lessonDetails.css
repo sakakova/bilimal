@@ -1,0 +1,33 @@
+.lesson-details{
+    background-color: #F5F5F5;
+    height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 30px;
+}
+.lesson-details .image{
+    display: flex;
+    
+    border-radius: 10px;
+    width: 90%;
+}
+.lesson-details img{
+    border-radius: 10px;
+}
+.lesson-details .title{
+    font-family: 'Montserrat', sans-serif;
+
+    font-size: 28px;
+}
+.lesson-details .teacher{
+    font-size: 16px;
+}
+.context{
+    background-color: #Fff;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}

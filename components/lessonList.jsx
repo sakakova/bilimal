@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getStorage, ref, getDownloadURL, getMetadata } from 'firebase/storage';
-import { app, storage } from '../src/config';
+import { app } from '../src/config';
 import { useEffect, useState } from 'react';
 
 export const LessonList = ({lessons, title}) => {
