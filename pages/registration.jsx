@@ -1,7 +1,7 @@
 
 import { useState } from 'react'
 import '../style/login.css'
-import {  createUserWithEmailAndPassword  } from 'firebase/auth';
+import {  createUserWithEmailAndPassword, updateProfile  } from 'firebase/auth';
 import { auth } from '../src/config';
 import {  useNavigate } from 'react-router-dom';
 
@@ -24,6 +24,15 @@ export const Registration =() =>{
             .then((userCredential) => {
                 // Signed in
                 const user = userCredential.user;
+                updateProfile(user, {
+                    displayName: name,
+                  })
+                    .then(() => {
+                      console.log('Display name set successfully.');
+                    })
+                    .catch((error) => {
+                      console.error('Error setting display name:', error);
+                    });
                 console.log(user);
                 navigate("/sign-in")
                 // ...

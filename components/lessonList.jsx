@@ -42,8 +42,11 @@ export const LessonList = ({lessons, title}) => {
                     <div className='img-box'>{lesson.imageUrl && <img src={lesson.imageUrl} alt="img" width={'60px'} height={'60px'}/>}</div>
                     
                     <Link to={`/lessons/${lesson.id}`}>
+                      <div className="desc">
                         <h2>{lesson.title}</h2>
-                        {/* <p>Written by {lesson.author}</p> */}
+                        <p className='teacher'><i>{lesson.author}</i></p>
+
+                      </div>
                     </Link>
                 </div>
             ))}

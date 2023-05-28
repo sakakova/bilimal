@@ -42,7 +42,9 @@ export const NavBar =()=>{
       </li>
       <li className='nav-el'>
           {/* <img src="icons\navbar-elements\profile.svg" alt="Profile" className="icon" /> */}
-          <button onClick={signOutUser}>sign out</button> 
+          <button onClick={signOutUser} className='sign-out'>
+          <img src="icons\navbar-elements\signout.svg" alt="create" className="icon" height='30px' />
+          </button> 
       </li>
   
     </ul>

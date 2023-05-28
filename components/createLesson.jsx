@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getFirestore, collection, addDoc, doc, getDoc, updateDoc, increment} from 'firebase/firestore';
-import { app } from '../src/config';
+import { app, auth } from '../src/config';
 import {  ref, uploadBytes } from 'firebase/storage';
 import { storage } from '../src/config';
 import '../style/createLesson.css'
@@ -10,7 +10,6 @@ export const CreateLesson = () => {
 
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
-    const [author, setAuthor] = useState('Shubham');
     const [isPending, setIsPending] = useState(false);
     const [lessonId, setLessonId] = useState(0);
     const [image, setImage] = useState(null);
@@ -36,7 +35,8 @@ export const CreateLesson = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const lesson = {id: lessonId,title, body, author, image: image ? image.name : null,quizLink: quizLink ? quizLink : null,
+        const user = auth.currentUser;
+        const lesson = {id: lessonId,title, body, author: user.displayName, image: image ? image.name : null,quizLink: quizLink ? quizLink : null,
 
             
         };
@@ -93,7 +93,7 @@ export const CreateLesson = () => {
                     value={body}
                     onChange={(e) => setBody(e.target.value)}
                 />
-                <label>Blog author:</label>
+                {/* <label>Blog author:</label>
                 <select className='inp'
                     value={author}
                     onChange={(e) => setAuthor(e.target.value)}
@@ -101,7 +101,7 @@ export const CreateLesson = () => {
                     <option value="Shubham">Shubham</option>
                     <option value="Satyam">Satyam</option>
                     <option value="Anmol">Anmol</option>
-                </select>
+                </select> */}
                 <label>Quiz link:</label>
                 <input
                     className="inp"

@@ -12,7 +12,8 @@ export const Profile = () => {
         if (user) {
           try {
             await user.reload(); // Refresh user data
-            const displayName = user.displayName;
+            const updatedUser = auth.currentUser; // Get the updated user object
+            const displayName = updatedUser.displayName;
             console.log(displayName);
             setUserName(displayName);
           } catch (error) {
