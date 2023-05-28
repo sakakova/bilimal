@@ -1,9 +1,9 @@
 // import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import '../style/home.css'
-import { useFetch } from '../components/useHooks';
+// import { useFetch } from '../components/useHooks';
 import { useState, useEffect } from 'react';
 import { LessonList } from '../components/lessonList';
-import {get, ref, getDatabase} from 'firebase/database' 
+// import {get, ref, getDatabase} from 'firebase/database' 
 import { app } from '../src/config';
 import {collection, getDocs, getFirestore} from 'firebase/firestore'
 // import { NavBar } from '../components/navbar';
@@ -38,10 +38,10 @@ export const Home = () => {
       }, []);
     return( 
         <div className="Home">
-            <h3>Home Page</h3>
+            {/* <h3>Home Page</h3> */}
             {error && <div>{error}</div>}
             {isPending && <div>Loading...</div>}
-            <LessonList lessons={lessons} title='All Lessons'/>
+            <LessonList lessons={lessons} title='My Lessons'/>
             {/* <NavBar/> */}
         </div>
 

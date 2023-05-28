@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getFirestore, collection, addDoc, doc, getDoc, updateDoc, increment} from 'firebase/firestore';
 import { app } from '../src/config';
-
+import { getStorage, ref, uploadBytes } from 'firebase/storage';
+import { storage } from '../src/config';
+import '../style/createLesson.css'
 export const CreateLesson = () => {
     // var [id, setId] = useState(0);
 
@@ -11,6 +13,8 @@ export const CreateLesson = () => {
     const [author, setAuthor] = useState('Shubham');
     const [isPending, setIsPending] = useState(false);
     const [lessonId, setLessonId] = useState(0);
+    const [image, setImage] = useState(null);
+
 
     const navigate = useNavigate();
     useEffect(() => {
@@ -30,7 +34,9 @@ export const CreateLesson = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const lesson = {id: lessonId,title, body, author };
+        const lesson = {id: lessonId,title, body, author, image: image ? image.name : null,
+            
+        };
     
         setIsPending(true);
     
@@ -38,6 +44,17 @@ export const CreateLesson = () => {
           const firestore = getFirestore(app);
           const lessonCollection = collection(firestore, 'lesson');
         //   const newLessonRef = doc(lessonCollection);
+        if (image) {
+            // Upload image to storage
+            const imageName = `lesson_${lessonId}_${image.name}`;
+
+            const storageRef = ref(storage, `images/${imageName}`);
+            await uploadBytes(storageRef, image);
+
+            lesson.image = imageName;
+
+          }
+
 
           await addDoc(lessonCollection, lesson);
           const counterDocRef = doc(firestore, 'counter', 'lessonId');
@@ -52,23 +69,29 @@ export const CreateLesson = () => {
     
     return ( 
         <div className="create">
-            <h2>Add a New Blog</h2>
+            <h2>Create new lesson</h2>
             <form onSubmit={handleSubmit}>
-                <label>Blog Title</label>
-                <input 
+                <label>Title</label>
+                <input  className='inp'
                     type="text"
                     required
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                 />
-                <label>Blog Body:</label>
-                <textarea
+                <label>Image:</label>
+                <input className='inp'
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => setImage(e.target.files[0])}
+                />
+                <label>Body:</label>
+                <textarea className='inp'
                     required
                     value={body}
                     onChange={(e) => setBody(e.target.value)}
                 />
                 <label>Blog author:</label>
-                <select
+                <select className='inp'
                     value={author}
                     onChange={(e) => setAuthor(e.target.value)}
                 >
@@ -76,7 +99,7 @@ export const CreateLesson = () => {
                     <option value="Satyam">Satyam</option>
                     <option value="Anmol">Anmol</option>
                 </select>
-                {!isPending && <button>Add Blog</button>}
+                {!isPending && <button>Create lesson</button>}
                 {isPending && <button disabled>Adding Blog</button>}
             </form>
         </div>
