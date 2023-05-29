@@ -8,6 +8,7 @@ import { updateProfile } from 'firebase/auth';
 
 export const Profile = () => {
     const [userName, setUserName] = useState('');
+    const [userEmail, setUserEmail] = useState('')
     const [profileImage, setProfileImage] = useState(null);
     const [uploading, setUploading] = useState(false);
     useEffect(() => {
@@ -18,8 +19,10 @@ export const Profile = () => {
             await user.reload(); // Refresh user data
             const updatedUser = auth.currentUser; // Get the updated user object
             const displayName = updatedUser.displayName;
+            const email = updatedUser.email;
             console.log(displayName);
             setUserName(displayName);
+            setUserEmail(email);
 
             if (updatedUser.photoURL) {
               setProfileImage(updatedUser.photoURL);
@@ -78,16 +81,21 @@ export const Profile = () => {
   
     return (
       <div className="Profile">
-        <h1>Profile</h1>
-        <h2>Welcome, {userName || 'Loading...'}!</h2>
-        {profileImage ? (
-        <img src={profileImage} alt="Profile" />
-      ) : (
-        <>
-          <input type="file" accept="image/*" onChange={handleFileChange} />
-          {uploading && <p>Uploading...</p>}
-        </>
-      )}
-      </div>
+          <h1>Профиль</h1>
+          {profileImage ? (
+          <div className='profile-photo-box'>
+            <img src={profileImage} alt="Profile" style={{maxHeight:'250px', maxWidth:'250px'}} />
+          </div>
+        ) : (
+          <div>
+            <input type="file" accept="image/*" onChange={handleFileChange} />
+            {uploading && <p>Загрузка...</p>}
+          </div>
+        )}
+          <h2><i>{userName || 'Загрузка...'}</i></h2>
+          <br/>
+          <p className='Email' style={{fontSize:'18px', alignSelf: 'flex-start', paddingLeft:'20px', fontFamily: 'sans-serif', marginBottom:'0'}}> Email:</p>
+          <p style={{fontSize: '',marginTop: '0', alignSelf:'flex-start',paddingLeft:'20px' }}>{userEmail}</p>
+        </div>
     );
   };

@@ -72,22 +72,22 @@ export const CreateLesson = () => {
     
     return ( 
         <div className="create">
-            <h2>Create new lesson</h2>
+            <h2>Создать новый урок</h2>
             <form onSubmit={handleSubmit}>
-                <label>Title</label>
+                <label>Название</label>
                 <input  className='inp'
                     type="text"
                     required
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                 />
-                <label>Image:</label>
+                <label>Фото:</label>
                 <input className='inp'
                   type="file"
                   accept="image/*"
                   onChange={(e) => setImage(e.target.files[0])}
                 />
-                <label>Body:</label>
+                <label>Контент:</label>
                 <textarea className='inp'
                     required
                     value={body}
@@ -102,7 +102,7 @@ export const CreateLesson = () => {
                     <option value="Satyam">Satyam</option>
                     <option value="Anmol">Anmol</option>
                 </select> */}
-                <label>Quiz link:</label>
+                <label>Ссылка на тест:</label>
                 <input
                     className="inp"
                     type="text"
@@ -110,8 +110,8 @@ export const CreateLesson = () => {
                     value={quizLink}
                     onChange={(e) => setQuizLink(e.target.value)}
                 />
-                {!isPending && <button>Create lesson</button>}
-                {isPending && <button disabled>Adding Blog</button>}
+                {!isPending && <button>Создать урок</button>}
+                {isPending && <button disabled>Создание урока...</button>}
             </form>
         </div>
      );
