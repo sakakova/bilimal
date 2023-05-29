@@ -1,4 +1,11 @@
 .Profile{
     height: 110vh;
-    background-color: #FDFD96;
+    background-color: #F5F5F5;
+    margin-top: -25px;
+    padding-top: 25px;
+}
+
+h1, h2{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
 }
