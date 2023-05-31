@@ -36,7 +36,7 @@ export const CreateLesson = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const user = auth.currentUser;
-        const lesson = {id: lessonId,title, body, author: user.displayName, image: image ? image.name : null,quizLink: quizLink ? quizLink : null,
+        const lesson = {id: lessonId,title, body, author: user.displayName, image: image ? image.name : null,quizLink: quizLink ? quizLink : null,teacher: user.uid,
 
             
         };

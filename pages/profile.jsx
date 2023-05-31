@@ -4,13 +4,16 @@ import { auth } from '../src/config';
 import { db } from '../src/config';
 import {   uploadBytes, getDownloadURL, ref } from 'firebase/storage';
 import { updateProfile } from 'firebase/auth';
-
+import { storage } from '../src/config';
+import { doc, getDoc } from 'firebase/firestore';
 
 export const Profile = () => {
     const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('')
     const [profileImage, setProfileImage] = useState(null);
     const [uploading, setUploading] = useState(false);
+    const [isTeacher, setIsTeacher] = useState(false);
+
     useEffect(() => {
       const fetchUserData = async () => {
         const user = auth.currentUser;
@@ -20,6 +23,11 @@ export const Profile = () => {
             const updatedUser = auth.currentUser; // Get the updated user object
             const displayName = updatedUser.displayName;
             const email = updatedUser.email;
+            const userDocRef = doc(storage, 'teacher', user.uid);
+            const userDoc = await getDoc(userDocRef);
+            setIsTeacher(userDoc.exists());
+            console.log('is teacher: '+isTeacher)
+
             console.log(displayName);
             setUserName(displayName);
             setUserEmail(email);
@@ -36,7 +44,8 @@ export const Profile = () => {
       
   
       fetchUserData();
-    }, []);
+    }, [isTeacher]);
+     
     // useEffect(() => {
     //   const storedProfileImage = localStorage.getItem('profileImage');
     //   if (storedProfileImage && auth.currentUser.photoURL) {
@@ -93,9 +102,10 @@ export const Profile = () => {
           </div>
         )}
           <h2><i>{userName || 'Загрузка...'}</i></h2>
-          <br/>
-          <p className='Email' style={{fontSize:'18px', alignSelf: 'flex-start', paddingLeft:'20px', fontFamily: 'sans-serif', marginBottom:'0'}}> Email:</p>
+          <p className='Email' style={{fontSize:'18px', alignSelf: 'flex-start', paddingLeft:'20px', fontFamily: 'sans-serif', marginBottom:'0', marginTop: '-10px'}}> Email:</p>
           <p style={{fontSize: '',marginTop: '0', alignSelf:'flex-start',paddingLeft:'20px' }}>{userEmail}</p>
+          <p className='Account type' style={{fontSize:'18px', alignSelf: 'flex-start', paddingLeft:'20px', fontFamily: 'sans-serif', marginBottom:'0'}}> Account type:</p>
+          <p style={{fontSize: '',marginTop: '0', alignSelf:'flex-start',paddingLeft:'20px' }}>{isTeacher ? 'Teacher' : 'Student'}</p>
         </div>
     );
   };
