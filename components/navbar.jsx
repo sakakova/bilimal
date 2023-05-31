@@ -47,11 +47,10 @@ export const NavBar =()=>{
       <li className='nav-el'>
         <Link to='/'><img src="icons\navbar-elements\home.svg" alt="Home" className="icon" /></Link>  
       </li>
-      <li className='nav-el'>
-      <Link to='/courses'><img src="icons\navbar-elements\courses.svg" alt="Courses" className="icon" /></Link>
-
-          
-      </li>
+      {isTeacher && (<li className='nav-el'>
+      <Link to='/courses'><img src="icons\navbar-elements\courses.svg" alt="Courses" className="icon" /></Link>   
+      </li>)}
+      
       <li className='nav-el'>
         <Link to='/profile'>
           <img src="icons\navbar-elements\profile.svg" alt="Profile" className="icon" />

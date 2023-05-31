@@ -41,7 +41,7 @@ export const Home = () => {
             {/* <h3>Home Page</h3> */}
             {error && <div>{error}</div>}
             {isPending && <div>Loading...</div>}
-            <LessonList lessons={lessons} title='My Lessons'/>
+            <LessonList lessons={lessons} title='All Lessons'/>
             {/* <NavBar/> */}
         </div>
 

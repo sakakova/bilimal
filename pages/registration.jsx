@@ -15,42 +15,26 @@ export const Registration =() =>{
         const [password, setPassword] = useState('');
         const [name, setName] = useState('')
         const [teacher, setTeacher] = useState(false);
+        const [errorPassword, setErrorPassword] = useState(null);
+        const [errorEmail, setErrorEmail] = useState(null);
+
+
 
 
 
      
         const onSubmit = async (e) => {
           e.preventDefault()
-         
-        //   await createUserWithEmailAndPassword(auth, email, password, { displayName: name })
-        //     .then((userCredential) => {
-        //         // Signed in
-        //         const user = userCredential.user;
-        //         updateProfile(user, {
-        //             displayName: name,
-        //           })
-        //             .then(() => {
-        //               console.log('Display name set successfully.');
-        //             })
-        //             .catch((error) => {
-        //               console.error('Error setting display name:', error);
-        //             });
-                
-        //         console.log(user);
-        //         navigate("/sign-in")
-        //         // ...
-        //     })
-        //     .catch((error) => {
-        //         const errorCode = error.code;
-        //         const errorMessage = error.message;
-        //         console.log(errorCode, errorMessage);
-        //         // ..
-        //     });
-            
-        // }
-        // const toSignIn = ()=>{
-        //     navigate('/sign-in')
-        // }
+          if (password.length < 6) {
+            setErrorPassword('Password should be at least 6 characters long');
+            return;
+          }
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(email.trim())) {
+            setErrorEmail('Invalid email format');
+            return;
+          }
+
             
     try {
         // Create the user using Firebase Authentication
@@ -109,14 +93,18 @@ export const Registration =() =>{
                     <div className="email-box">
                         <p className='placeholder'>E-mail</p>
                         <input type="email" className='inputs' placeholder='Введите e-mail' value={email} onChange={(e)=>setEmail(e.target.value)} required/>
+                        {errorEmail && <p className="error-message" style={{color:'red', marginBottom:'10px'}}>{errorEmail}</p>}
+
                     </div>
                     <div className="password-box">
                         <p className='placeholder'>Password</p>
                         <input type="password" className='inputs' placeholder='Введите пароль' value={password} onChange ={(e)=>setPassword(e.target.value)}required/>
-                        <div className='remember-me'>
+                        {errorPassword && <p className="error-message" style={{color:'red', marginBottom:'10px'}}>{errorPassword}</p>}
+
+                        {/* <div className='remember-me'>
                             <input type='checkbox' className='checkbox'/>
                             <p>Запомнить меня</p>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="role-box">
                       <p className="placeholder">Role</p>
