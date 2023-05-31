@@ -1,7 +1,7 @@
 import '../style/profile.css'
 import { useEffect, useState } from 'react';
 import { auth } from '../src/config';
-import { storage } from '../src/config';
+import { db } from '../src/config';
 import {   uploadBytes, getDownloadURL, ref } from 'firebase/storage';
 import { updateProfile } from 'firebase/auth';
 
@@ -58,7 +58,7 @@ export const Profile = () => {
         const userId = auth.currentUser.uid; // Get the user's unique identifier
 
         const imagePath = `profile-images/${userId}_${file.name}`;
-        const imageRef = ref(storage, imagePath);
+        const imageRef = ref(db, imagePath);
         await uploadBytes(imageRef, file);
         const downloadURL = await getDownloadURL(imageRef);
   

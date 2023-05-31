@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { getFirestore, collection, addDoc, doc, getDoc, updateDoc, increment} from 'firebase/firestore';
 import { app, auth } from '../src/config';
 import {  ref, uploadBytes } from 'firebase/storage';
-import { storage } from '../src/config';
+import { db } from '../src/config';
 import '../style/createLesson.css'
 export const CreateLesson = () => {
     // var [id, setId] = useState(0);
@@ -51,7 +51,7 @@ export const CreateLesson = () => {
             // Upload image to storage
             const imageName = `lesson_${lessonId}_${image.name}`;
 
-            const storageRef = ref(storage, `images/${imageName}`);
+            const storageRef = ref(db, `images/${imageName}`);
             await uploadBytes(storageRef, image);
 
             lesson.image = imageName;
